@@ -1,4 +1,4 @@
-part of 'collaboration_cubit.dart';
+part of 'crypto_cubit.dart';
 
 @immutable
 class CryptoCubitState extends Equatable {
