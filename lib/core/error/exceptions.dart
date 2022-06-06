@@ -29,3 +29,5 @@ class LocalStorageException implements Exception {}
 class UserIdNotFoundException implements Exception {}
 
 class ConflictException implements Exception {}
+
+class ForbiddenException extends ServerException {}
