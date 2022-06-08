@@ -12,12 +12,12 @@ import 'package:injectable/injectable.dart';
 part 'crypto_cubit_state.dart';
 
 @injectable
-class CollaborationCubit extends Cubit<CryptoCubitState> {
+class CryptoCubit extends Cubit<CryptoCubitState> {
   SearchAsset searchAsset;
 
   static const int pageSize = 10;
 
-  CollaborationCubit(
+  CryptoCubit(
       {required this.searchAsset})
       : super(CryptoCubitState.initial());
 

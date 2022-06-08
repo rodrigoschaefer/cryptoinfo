@@ -1,7 +1,10 @@
+import 'package:cryptoinfo/features/home/presentation/cubit/crypto_cubit.dart';
 import 'package:cryptoinfo/utils/size_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'features/home/presentation/pages/home.dart';
+import 'injection.dart';
 
 void main() {
   runApp(const CryptoInfoApp());
@@ -40,16 +43,14 @@ class CryptoInfoApp extends StatelessWidget {
           color: Colors.white,
           opacity: 1.0,
         ),
-
         textButtonTheme: TextButtonThemeData(
-          style: TextButton.styleFrom(
-            elevation: 0,
-            backgroundColor: Colors.transparent,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-          )
-        ),
+            style: TextButton.styleFrom(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        )),
         hintColor: const Color.fromARGB(255, 102, 101, 101),
         primaryColor: const Color.fromARGB(255, 255, 253, 253),
         disabledColor: const Color.fromARGB(255, 70, 75, 78),
@@ -65,7 +66,9 @@ class CryptoInfoApp extends StatelessWidget {
           foregroundColor: Colors.black,
         ),
       ),
-      home: const HomePage(title: 'Crypto Info'),
+      home: BlocProvider(
+          create: (_) => getIt<CryptoCubit>(),
+          child: HomePage(title: 'Crypto Info')),
     );
   }
 }
