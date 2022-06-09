@@ -3,14 +3,15 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../data/model/search_response_model.dart';
-import '../../error/failures.dart';
-import '../../usecases/usecase.dart';
-import '../respository/crypto_repository.dart';
+
+import '../../../../core/data/model/search_response_model.dart';
+import '../../../../core/error/failures.dart';
+import '../../../../core/usecases/usecase.dart';
+import '../respository/crypto_search_repository.dart';
 
 @lazySingleton
 class SearchAsset implements UseCase<SearchResponseModel, SearchParams> {
-  final CryptoRepository? cryptoRepository;
+  final CryptoSearchRepository? cryptoRepository;
 
   SearchAsset({this.cryptoRepository});
 

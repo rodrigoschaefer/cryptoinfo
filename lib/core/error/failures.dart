@@ -22,3 +22,5 @@ class DecodeJsonFailure implements Failure {}
 
 class ConflictFailure extends Failure {}
 
+class FetchFailure extends Failure {}
+

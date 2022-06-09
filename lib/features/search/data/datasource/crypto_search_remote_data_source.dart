@@ -3,18 +3,18 @@ import 'dart:developer';
 
 import 'package:injectable/injectable.dart';
 
-import '../model/search_response_model.dart';
-import 'base_remote_data_source.dart';
+import '../../../../core/data/model/search_response_model.dart';
+import '../../../../core/data/datasource/base_remote_data_source.dart';
 import 'package:cryptoinfo/core/network/ci_http_client.dart' as http;
 
-abstract class CryptoRemoteDataSource {
+abstract class CryptoSearchRemoteDataSource {
 
   Future<SearchResponseModel> searchCoin({required String partial});
 
 }
 
-@LazySingleton(as: CryptoRemoteDataSource, env: [Environment.dev, Environment.prod])
-class CollaborationsRemoteDataSourceImpl extends BaseRemoteDataSource implements CryptoRemoteDataSource {
+@LazySingleton(as: CryptoSearchRemoteDataSource, env: [Environment.dev, Environment.prod])
+class CryptoSearchRemoteDataSourceImpl extends BaseRemoteDataSource implements CryptoSearchRemoteDataSource {
 
   static String host = 'https://api.coingecko.com';
 

@@ -4,18 +4,20 @@ import 'package:cryptoinfo/core/error/failures.dart';
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../domain/respository/crypto_repository.dart';
-import '../../error/exceptions.dart';
-import '../../network/network_info.dart';
-import '../datasource/crypto_remote_data_source.dart';
+import '../../../../core/error/exceptions.dart';
+import '../../../../core/network/network_info.dart';
+import '../../domain/respository/crypto_search_repository.dart';
+import '../datasource/crypto_search_remote_data_source.dart';
 
 
-@LazySingleton(as: CryptoRepository)
-class CollaborationRepositoryImpl implements CryptoRepository {
-  final CryptoRemoteDataSource? remoteDataSource;
+
+
+@LazySingleton(as: CryptoSearchRepository)
+class CryptoSearchRepositoryImpl implements CryptoSearchRepository {
+  final CryptoSearchRemoteDataSource? remoteDataSource;
   final NetworkInfo? networkInfo;
 
-  CollaborationRepositoryImpl({
+  CryptoSearchRepositoryImpl({
     required this.remoteDataSource,
     required this.networkInfo,
   });

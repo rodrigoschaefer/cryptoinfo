@@ -1,12 +1,12 @@
-import 'package:cryptoinfo/features/home/presentation/cubit/crypto_cubit.dart';
-import 'package:cryptoinfo/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'features/home/presentation/cubit/crypto_records_cubit.dart';
 import 'features/home/presentation/pages/home.dart';
 import 'injection.dart';
 
 void main() {
+  configureModuleInjection();
   runApp(const CryptoInfoApp());
 }
 
@@ -67,7 +67,7 @@ class CryptoInfoApp extends StatelessWidget {
         ),
       ),
       home: BlocProvider(
-          create: (_) => getIt<CryptoCubit>(),
+          create: (_) => getIt<CryptoRecordsCubit>()..fetchCryptoRecords(),
           child: HomePage(title: 'Crypto Info')),
     );
   }

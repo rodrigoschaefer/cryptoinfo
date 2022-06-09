@@ -4,8 +4,10 @@ import 'package:cryptoinfo/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../components/search_asset_dialog_content.dart';
-import '../cubit/crypto_cubit.dart';
+
+import '../../../search/presentation/components/search_asset_dialog_content.dart';
+import '../../../search/presentation/cubit/crypto_search_cubit.dart';
+import '../cubit/crypto_records_cubit.dart';
 import '../widgets/asset_info.dart';
 
 class HomePage extends StatefulWidget {
@@ -27,8 +29,8 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body:
-      BlocBuilder<CryptoCubit, CryptoCubitState>(
-        bloc: BlocProvider.of<CryptoCubit>(context),
+      BlocBuilder<CryptoRecordsCubit, CryptoRecordsCubitState>(
+        bloc: BlocProvider.of<CryptoRecordsCubit>(context),
         builder: (context, state) {
               return Padding(
                 padding: EdgeInsets.symmetric(horizontal: SizeUtils.horizontalBlockSize * 5),
@@ -36,8 +38,14 @@ class _HomePageState extends State<HomePage> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: <Widget>[
                     SizedBox(height: SizeUtils.verticalBlockSize*5,),
-                    const AssetInfo(name: 'Cardano',price: 0.56,symbol: 'ADA',currency: 'USD', thumbImageUrl: 'https://assets.coingecko.com/coins/images/975/thumb/cardano.png?1547034860'),
-                    const AssetInfo(name: 'Solana',price: 0.26,symbol: 'SOL',currency: 'USD', thumbImageUrl: 'https://assets.coingecko.com/coins/images/4128/thumb/solana.png?1640133422'),
+                    ListView.builder(
+                      itemCount: state.assetList.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        return AssetInfo(name: state.assetList[index].name, price: state.assetList[index].price, symbol: state.assetList[index].symbol, thumbImageUrl: state.assetList[index].thumbImageUrl, currency: state.assetList[index].currency,);
+                      },
+                    )
                   ],
                 ),
               );

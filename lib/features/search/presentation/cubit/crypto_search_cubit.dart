@@ -2,24 +2,25 @@ import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:cryptoinfo/core/data/model/coin_model.dart';
-import 'package:cryptoinfo/core/domain/usecase/search_asset.dart';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
+import '../../domain/usecase/search_asset.dart';
 
-part 'crypto_cubit_state.dart';
+
+part 'crypto_search_cubit_state.dart';
 
 @injectable
-class CryptoCubit extends Cubit<CryptoCubitState> {
+class CryptoSearchCubit extends Cubit<CryptoSearchCubitState> {
   SearchAsset searchAsset;
 
   static const int pageSize = 10;
 
-  CryptoCubit(
+  CryptoSearchCubit(
       {required this.searchAsset})
-      : super(CryptoCubitState.initial());
+      : super(CryptoSearchCubitState.initial());
 
 
   void searchCryptoAsset({required String partial}) async {
@@ -30,7 +31,7 @@ class CryptoCubit extends Cubit<CryptoCubitState> {
     var result = await searchAsset.call(params);
     await result.fold(
             (failure) async {
-              emit(CryptoCubitState.failed());
+              emit(CryptoSearchCubitState.failed());
             },
             (response) async {
 
