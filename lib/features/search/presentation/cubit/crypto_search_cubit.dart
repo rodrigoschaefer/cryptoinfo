@@ -9,7 +9,6 @@ import 'package:injectable/injectable.dart';
 
 import '../../domain/usecase/search_asset.dart';
 
-
 part 'crypto_search_cubit_state.dart';
 
 @injectable
@@ -18,27 +17,31 @@ class CryptoSearchCubit extends Cubit<CryptoSearchCubitState> {
 
   static const int pageSize = 10;
 
-  CryptoSearchCubit(
-      {required this.searchAsset})
+  CryptoSearchCubit({required this.searchAsset})
       : super(CryptoSearchCubitState.initial());
 
-
   void searchCryptoAsset({required String partial}) async {
-
     List<CoinModel> coinList;
 
     var params = SearchParams(partial: partial);
     var result = await searchAsset.call(params);
-    await result.fold(
-            (failure) async {
-              emit(CryptoSearchCubitState.failed());
-            },
-            (response) async {
-
-            }
-    );
-
-
+    await result.fold((failure) async {
+      emit(CryptoSearchCubitState.failed());
+    }, (response) async {
+      emit(CryptoSearchCubitState.search(response.coins));
+    });
   }
 
+  Future<List<CoinModel>?> searchCryptoAssetSync(
+      {required String partial}) async {
+    List<CoinModel> coinList;
+
+    var params = SearchParams(partial: partial);
+    var result = await searchAsset.call(params);
+    if (result.isRight()) {
+      return result.toOption().toNullable()?.coins;
+    } else {
+      return null;
+    }
+  }
 }

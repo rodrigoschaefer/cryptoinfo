@@ -10,7 +10,7 @@ CoinModel _$CoinModelFromJson(Map<String, dynamic> json) => CoinModel(
       json['id'] as String,
       json['name'] as String,
       json['symbol'] as String,
-      json['marketCapRank'] as int,
+      json['marketCapRank'] as int?,
       json['thumb'] as String,
     );
 

@@ -39,6 +39,14 @@ class CryptoSearchCubitState extends Equatable {
     );
   }
 
+  factory CryptoSearchCubitState.search(List<CoinModel> coins) {
+    return CryptoSearchCubitState(
+      coinList: coins,
+      loading: false,
+      cryptoCubitOperation: CryptoCubitOperation.search
+    );
+  }
+
   factory CryptoSearchCubitState.loading() {
     return CryptoSearchCubitState(
       loading: true,

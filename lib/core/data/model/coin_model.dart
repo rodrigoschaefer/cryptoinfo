@@ -9,7 +9,7 @@ class CoinModel {
   String id;
   String name;
   String symbol;
-  int marketCapRank;
+  int? marketCapRank;
   String thumb;
 
 

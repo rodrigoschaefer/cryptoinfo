@@ -18,7 +18,6 @@ class SearchAsset implements UseCase<SearchResponseModel, SearchParams> {
   @override
   Future<Either<Failure, SearchResponseModel>> call(
       SearchParams params) async {
-    //TODO: migrate user repository
     final result = await cryptoRepository!.searchCoin(partial: params.partial);
     return result;
   }

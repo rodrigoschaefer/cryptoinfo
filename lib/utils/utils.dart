@@ -53,7 +53,8 @@ class Utils {
       {required BuildContext context,
       Widget? title,
       List<Widget>? actions,
-      bool dismissible = true}) {
+      bool dismissible = true,
+      EdgeInsets insetPadding = const EdgeInsets.only(bottom: 0)}) {
 
     showDialog(
       barrierDismissible: dismissible,
@@ -71,7 +72,7 @@ class Utils {
               ),
             ),
             title: title,
-            actions: actions,
+            actions: actions,insetPadding: insetPadding,
           ),
         );
       },

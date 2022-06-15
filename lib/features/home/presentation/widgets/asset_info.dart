@@ -3,6 +3,8 @@ import 'package:cryptoinfo/utils/size_utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'crypto_thumb.dart';
+
 class AssetInfo extends StatelessWidget {
   final String? thumbImageUrl;
   final String name;
@@ -25,15 +27,7 @@ class AssetInfo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-            Container(
-              decoration: const BoxDecoration(
-                borderRadius: BorderRadius.all(Radius.circular(100)),
-              ),
-              child: CachedNetworkImage(
-                imageUrl: thumbImageUrl!,
-                errorWidget: (context, url, error) => const Icon(Icons.error),
-              ),
-            ),
+            CryptoThumb(url: thumbImageUrl!),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [

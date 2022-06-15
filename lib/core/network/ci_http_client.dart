@@ -1,13 +1,8 @@
-/// A composable, [Future]-based library for making HTTP requests using yeay's
-/// custom interceptor.
 import 'dart:async';
 import 'dart:convert';
 import 'dart:typed_data';
-
 import 'package:http/http.dart';
-
 import '../../injection.dart';
-
 export 'package:http/http.dart';
 
 Future<Response> head(Uri url, {Map<String, String>? headers}) =>
